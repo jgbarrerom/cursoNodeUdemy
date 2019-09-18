@@ -12,7 +12,7 @@ exports.ensureAuth = function(req, res, next){
     if(!req.headers.authorization){
         return res.status(403).send({message: 'La peticion no tiene la cabecera de autenticacion'});
     }
-
+    //se usa expresion regular para reemplazar comillas dobles o sencillas en el token
     var token = req.headers.authorization.replace(/['"]+/g, '');
     try {
         var payload = jwt.decode(token, secret);
