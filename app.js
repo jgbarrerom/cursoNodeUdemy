@@ -21,9 +21,9 @@ app.use(bodyParser.json());//lo que llega por post lo parsea a json
 
 //rutas base
 app.use('/api', user_routes);
-app.get('/prueba', function(req,res){
+/*app.get('/prueba', function(req,res){
     res.status(200).send({message: 'Bienvenido al curso UDEMY'});
-});
+});*/
 
 //exportar el modulo
 
