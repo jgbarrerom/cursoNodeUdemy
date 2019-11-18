@@ -28,6 +28,15 @@ app.use('/api', artist_routes);
 app.use('/api', album_routes);
 app.use('/api', song_routes);
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Autorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Headers-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Allow', 'GET, POST, PUT, DELETE, OPTIONS');  
+
+    next();
+});
+
 /*app.get('/prueba', function(req,res){
     res.status(200).send({message: 'Bienvenido al curso UDEMY'});
 });*/
