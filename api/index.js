@@ -1,4 +1,4 @@
-'use strict'//para usar instrucciones de nuevo estadr JS
+'use strict'//para usar instrucciones de nuevo estandar JS
 
 var mongoose = require('mongoose');//para usar la libreria de mongoose
 var app = require('./app');

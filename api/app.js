@@ -16,7 +16,7 @@ var artist_routes = require('./routes/artist');
 var album_routes = require('./routes/album');
 var song_routes = require('./routes/song');
 
-app.use(bodyParser.urlencoded({extended :false}));
+app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());//lo que llega por post lo parsea a json
 
 
@@ -30,11 +30,11 @@ app.use('/api', song_routes);
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Autorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Headers-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Allow', 'GET, POST, PUT, DELETE, OPTIONS');  
-
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
+
 });
 
 /*app.get('/prueba', function(req,res){

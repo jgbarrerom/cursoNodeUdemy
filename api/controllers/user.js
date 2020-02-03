@@ -52,12 +52,15 @@ function saveUser(req, res){
 }
 
 function loginUser(req, res){
+    console.log('Got Body:', req.body);
     var params = req.body;
     var email = params.email;
     var password = params.password;
+    
+
     User.findOne({email: email.toLowerCase()}, (err, user) => {
         if(err){
-            res.status(500).send({message : 'Error en la peticion'});
+            res.status(500).send({message : 'Error en la peticion '});
         }else{
             if(!user){
                 res.status(404).send({message : 'No se encontro el usuario'});

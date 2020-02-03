@@ -21,12 +21,23 @@ export class AppComponent implements OnInit{
     this.user = new User('','','','','','ROLE_USER','');
   }
 
+  /**
+   * Metodo que se ejecuta al cargar el componente
+   */
   ngOnInit(){
-    var texto = this._userServices.signup();
-    console.log(texto);
+
   }
 
   public onSubmit(){
-    console.log(this.user);
+    this._userServices.signup(this.user).subscribe(
+      response => {
+        //let identity = response.user;
+        console.log('RESPONSE ' + response);
+      }, error => {
+        var errorMsg = <any>error;
+        if(errorMsg != null){
+        console.log(errorMsg);
+      }
+    });
   }
 }
