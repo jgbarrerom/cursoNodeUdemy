@@ -52,7 +52,7 @@ function saveUser(req, res){
 }
 
 function loginUser(req, res){
-    console.log('Got Body:', req.body);
+    //console.log('Got Body:', req.body);
     var params = req.body;
     var email = params.email;
     var password = params.password;

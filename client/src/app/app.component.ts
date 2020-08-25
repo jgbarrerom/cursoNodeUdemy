@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   public user: User;
   public identity;
   public token;
+  public errorMenssage;
 
   constructor(
     private _userServices: UserService
@@ -25,18 +26,38 @@ export class AppComponent implements OnInit{
    * Metodo que se ejecuta al cargar el componente
    */
   ngOnInit(){
-
+    
   }
 
   public onSubmit(){
     this._userServices.signup(this.user).subscribe(
       response => {
-        //let identity = response.user;
-        console.log('RESPONSE ' + response);
+        this.identity = response.user._id;
+        this.errorMenssage='';
+        if(!this.identity){
+          alert('El usuario no está correctamente identificado');
+        }else{
+          //se crea sesion en el localstorage para tener al usuario en sesion
+          //conseguir token para enviarlo en cada peticion
+          this._userServices.signup(this.user,'token').subscribe(
+            response => {
+              //console.log('RESPOSE DE TOKEN ' + response.token);
+              this.token = response.token;
+              if(this.token <= 0){
+                alert('El token no se ha generado correctamente');
+              }else{
+                console.log('TOKEN = ' + this.token);
+                console.log('ID = ' + this.identity);
+              }
+            },
+            error=>{
+
+            })
+        }
       }, error => {
-        var errorMsg = <any>error;
+        var errorMsg = <any>error.error;
         if(errorMsg != null){
-        console.log(errorMsg);
+          this.errorMenssage = errorMsg.message;
       }
     });
   }
