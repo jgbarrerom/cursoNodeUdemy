@@ -8,6 +8,8 @@ import { User } from '../models/user';
 
 @Injectable()
 export class UserService{
+    private identity;
+    private token;
     public url: string;
     
     constructor(private _http : HttpClient){
@@ -23,6 +25,26 @@ export class UserService{
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
 
         return this._http.post(this.url+'login', body, {headers : headers});
+    }
+
+    getIdentity(){
+        let identity = JSON.parse(localStorage.getItem('identity'));
+        if(identity != "undefined"){
+            this.identity = identity;
+        }else{
+            this.identity = null;
+        }
+        return this.identity;
+    }
+
+    getToken(){
+        let token = JSON.parse(localStorage.getItem('token'));
+        if(token != "undefined"){
+            this.token = token;
+        }else{
+            this.token = null;
+        }
+        return this.token;
     }
 
 
