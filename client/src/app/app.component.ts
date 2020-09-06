@@ -12,38 +12,41 @@ import { UserService } from './services/user.service';
 export class AppComponent implements OnInit{
   title = 'Musify';
   public user: User;
+  public userRegiser: User;
   public identity;
   public token;
   public errorMenssage;
+  public alertRegister;
 
   constructor(
     private _userServices: UserService
   ){
     this.user = new User('','','','','','ROLE_USER','');
+    this.userRegiser = new User('','','','','','ROLE_USER','');
   }
 
   /**
    * Metodo que se ejecuta al cargar el componente
    */
   ngOnInit(){
-    this.identity = this._userServices.getIdentity;
-    this.token = this._userServices.getToken;
-    console.log(this.identity);
-    console.log(this.token);
+    this.identity = this._userServices.getIdentity();
+    this.token = this._userServices.getToken();
+    //console.log(this.identity);
+    //console.log(this.token);
   }
 
   public onSubmit(){
     this._userServices.signup(this.user).subscribe(
       response => {
         var userResp = <any>response;
-        this.identity = userResp.user._id;
+        this.identity = userResp.user;
         this.errorMenssage='';
-        if(!this.identity){
+        if(!this.identity._id){
           alert('El usuario no está correctamente identificado');
         }else{
           //se crea sesion en el localstorage para tener al usuario en sesion
           //conseguir token para enviarlo en cada peticion
-          localStorage.setItem('identity',JSON.stringify(userResp.user));
+          localStorage.setItem('identity',JSON.stringify(this.identity));
           this._userServices.signup(this.user,'token').subscribe(
             response => {
               //console.log('RESPOSE DE TOKEN ' + response.token);
@@ -55,8 +58,8 @@ export class AppComponent implements OnInit{
                 localStorage.setItem('token',this.token);
               }
             },
-            error=>{
-
+            error => {
+              alert('Se esta presentando un error en la validacion del usuario');
             })
         }
       }, error => {
@@ -65,5 +68,38 @@ export class AppComponent implements OnInit{
           this.errorMenssage = errorMsg.message;
       }
     });
+  }
+
+  /**
+   * onSubmitRegister
+   */
+  public onSubmitRegister() {
+    this._userServices.register(this.userRegiser).subscribe(
+      response => {
+        let user = response.user;
+        this.userRegiser = user;
+        if(!user._id){
+          this.alertRegister = 'Error al registrarse';
+        }else{
+          this.alertRegister = 'El registro se ha realizado correctamente. Identificado con ' + this.userRegiser.email;
+          this.userRegiser = new User('','','','','','ROLE_USER','');
+        }
+      },
+      error => {
+        this.alertRegister = error;
+      }
+    );
+  }
+
+  /**
+   * logout
+   */
+  public logout() {
+    localStorage.removeItem('identity');
+    localStorage.removeItem('token');
+    localStorage.clear();
+    this.identity = null;
+    this.token = null;
+    this.user = new User('','','','','','ROLE_USER','');
   }
 }

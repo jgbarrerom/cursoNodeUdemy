@@ -16,6 +16,12 @@ export class UserService{
         this.url = GLOBAL.url;
     }
 
+    register(user_to_register : User): Observable<any>{ 
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        const body = JSON.stringify(user_to_register);
+        return this._http.post(this.url+'register',body,{headers: headers});
+    }
+
     signup(user_to_login, gethash = ''){
         user_to_login.gethash = gethash;
         const body = new HttpParams()
@@ -38,7 +44,7 @@ export class UserService{
     }
 
     getToken(){
-        let token = JSON.parse(localStorage.getItem('token'));
+        let token = localStorage.getItem('token');
         if(token != "undefined"){
             this.token = token;
         }else{

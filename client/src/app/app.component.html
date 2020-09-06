@@ -1,57 +1,62 @@
-<div *ngIf="identity" class="navigation col-lg-1">
+<div *ngIf="identity">
   <h1>{{ title }}</h1>
-</div>
-<div class="clearfix"></div>
-<div *ngIf="identity" class="navigation col-lg-11">
+  <span>{{identity.name}} {{identity.surname}}</span>
+  <span class="btn btn-warning" (click)="logout()">
+    Cerrar Sesión
+  </span>
   <p>Estas logeado en la aplicación</p>
 </div>
-<div class="col-md-12" *ngIf="!identity">
-  <div class="col-md-6">
-    <h1>Identificate</h1>
-    <div *ngIf="errorMenssage">
-      <div class="alert alert-danger" role="alert">
-        <strong>Error:</strong> {{errorMenssage}}
-      </div>
-    </div>
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-7">
-      <p>
-        <label>Correo Electrónico</label>
-        <input type="email" #email="ngModel" name="email" [(ngModel)]="user.email" 
-        class="form-control" required/>
+<div *ngIf="!identity" class="text-center">
+  <div class="row">
+    <div class="col-sm">
+      <h1>Identificate</h1>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="form-sigin">
+        <p>
+          <input placeholder="Correo Electrónico" type="email" #email="ngModel" name="email" [(ngModel)]="user.email"
+            class="form-control" required />
           <span *ngIf="!email.valid && email.touched">El email es obligatorio</span>
-      </p>
-      <p>
-        <label>Contraseña</label>
-        <input name="password" #password="ngModel" [(ngModel)]="user.password" 
-          type="password" class="form-control" required/>
-      </p>
-      <p>
-        <input type="submit" value="Entrar" class="btn btn-primary"/>
-      </p>
-    </form>
+        </p>
+        <p>
+          <input placeholder="Contraseña" name="password" #password="ngModel" [(ngModel)]="user.password"
+            type="password" class="form-control" required />
+        </p>
+        <div *ngIf="errorMenssage">
+          <div class="alert alert-danger" role="alert">
+            <strong>Error:</strong> {{errorMenssage}}
+          </div>
+        </div>
+        <p>
+          <input type="submit" value="Entrar" class="btn btn-lg btn-primary btn-block" />
+        </p>
+      </form>
+    </div>
+
+    <div class="col-sm">
+      <h1>Registrate</h1>
+      <div *ngIf="alertRegister">
+        <div class="alert alert-primary" role="alert">
+          {{alertRegister}}
+        </div>
+      </div>
+      <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="form-sigin">
+        <p>
+          <input placeholder="Nombre" type="text" class="form-control" #nameReg="ngModel" name="name" [(ngModel)]="userRegiser.name" required />
+        </p>
+        <p>
+          <input placeholder="Apellido" type="text" class="form-control" required #surnameReg="ngModel" name="surname" [(ngModel)]="userRegiser.surname" />
+        </p>
+        <p>
+          <input placeholder="Correo Electronico" type="text" class="form-control" required #emailReg="ngModel" name="email" [(ngModel)]="userRegiser.email" />
+        </p>
+        <p>
+          <input placeholder="Contraseña" type="password" class="form-control" required #passwordReg="ngModel" name="password" [(ngModel)]="userRegiser.password" />
+        </p>
+        <p>
+          <input type="submit" value="Registrar" class="btn btn-lg btn-primary btn-block" />
+        </p>
+      </form>
+    </div>
   </div>
-  <div class="col-md-6">
-    <h1>Registrate</h1>
-    <form action="" class="col-md-10">
-      <p>
-        <label>Nombre</label>
-        <input type="text" class="form-control" required />
-      </p>
-      <p>
-        <label>Apellido</label>
-        <input type="text" class="form-control" required />
-      </p>
-      <p>
-        <label>Correo Electronico</label>
-        <input type="text" class="form-control" required />
-      </p>
-      <p>
-        <label>Contraseña</label>
-        <input type="password" class="form-control" required/>
-      </p>
-      <p>
-        <input type="submit" value="Registrar" class="btn btn-primary"/>
-      </p>
-    </form>
-  </div>
+
+
 </div>
