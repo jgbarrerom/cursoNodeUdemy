@@ -4,16 +4,21 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import {UserEditComponent} from './components/user-edit.component';
+import { routing, appRoutingProviders } from './app.routing';  
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    routing
   ],
-  providers: [],
+  providers: [ appRoutingProviders ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

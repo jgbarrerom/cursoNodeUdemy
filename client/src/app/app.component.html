@@ -1,10 +1,31 @@
 <div *ngIf="identity">
   <h1>{{ title }}</h1>
-  <span>{{identity.name}} {{identity.surname}}</span>
-  <span class="btn btn-warning" (click)="logout()">
-    Cerrar Sesión
-  </span>
+  <nav id="navigation">
+    <a href="#">
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      Buscar
+    </a>
+    <a href="#">
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      Artista
+    </a>
+    <a href="#">
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      Album
+    </a>
+  </nav>
+  <nav id="user-logged">
+    <span>{{identity.name}}</span>
+    <span class="btn btn-warning" (click)="logout()">
+      Cerrar Sesión
+    </span>
+    <a [routerLink]="['/mis-datos']">
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      Mis Datos
+    </a>
+  </nav>
   <p>Estas logeado en la aplicación</p>
+  <router-outlet></router-outlet>
 </div>
 <div *ngIf="!identity" class="text-center">
   <div class="row">

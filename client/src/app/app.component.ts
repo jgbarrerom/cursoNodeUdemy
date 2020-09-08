@@ -56,6 +56,7 @@ export class AppComponent implements OnInit{
                 alert('El token no se ha generado correctamente');
               }else{
                 localStorage.setItem('token',this.token);
+                this.user = new User('','','','','','ROLE_USER','');
               }
             },
             error => {

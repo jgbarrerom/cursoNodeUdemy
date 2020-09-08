@@ -16,12 +16,6 @@ export class UserService{
         this.url = GLOBAL.url;
     }
 
-    register(user_to_register : User): Observable<any>{ 
-        let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        const body = JSON.stringify(user_to_register);
-        return this._http.post(this.url+'register',body,{headers: headers});
-    }
-
     signup(user_to_login, gethash = ''){
         user_to_login.gethash = gethash;
         const body = new HttpParams()
@@ -31,6 +25,20 @@ export class UserService{
         let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
 
         return this._http.post(this.url+'login', body, {headers : headers});
+    }
+
+    register(user_to_register : User): Observable<any>{ 
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        const body = JSON.stringify(user_to_register);
+        return this._http.post(this.url+'register',body,{headers: headers});
+    }
+
+    updateUser(user_to_update : User) : Observable<any>{
+        let headers = new HttpHeaders()
+            .set('Content-Type', 'application/json')
+            .set('Authorization', this.getToken());
+        const params = JSON.stringify(user_to_update);
+        return this._http.put(this.url+'update-user/'+user_to_update._id, params, {headers: headers});
     }
 
     getIdentity(){

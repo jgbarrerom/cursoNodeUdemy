@@ -91,6 +91,10 @@ function updateUser(req, res){
     var userId = req.params.id;//se obtiene valor de la url
     var update = req.body;
 
+    if(userId){
+        return res.status(500).send({message : 'Error al actualizar el usuario'});
+    }
+
     User.findByIdAndUpdate(userId, update,(err, userUpdated) => {
         if(err){
             res.status(500).send({message : 'Error al actualizar el usuario'});
