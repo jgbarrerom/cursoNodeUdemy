@@ -1,21 +1,27 @@
 <div *ngIf="identity">
   <h1>{{ title }}</h1>
-  <nav id="navigation">
-    <a href="#">
-      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-      Buscar
-    </a>
-    <a href="#">
-      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-      Artista
-    </a>
-    <a href="#">
-      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-      Album
-    </a>
-  </nav>
-  <nav id="user-logged">
-    <span>{{identity.name}}</span>
+  <ul id="navigation" class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        Buscar
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        Artista
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        Album
+      </a>
+    </li>
+  </ul>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="user-logged">
+    <span id="identityName">{{identity.name}}</span>
     <span class="btn btn-warning" (click)="logout()">
       Cerrar Sesión
     </span>
