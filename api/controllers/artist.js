@@ -128,8 +128,8 @@ function uploadImages(req,res){
 
     if(req.files){
         var filePath = req.files.image.path;
-        var filePathSplit = filePath.split('\\');
-        fileName = filePathSplit[2];
+        var filePathSplit = filePath.replace(/\\/g, '/').split('/');
+        fileName = filePathSplit.pop();
         var fileExt = fileName.split('\.')[1];
         if(fileExt != 'png' && fileExt != 'jpg'){
             res.status(403).send({messages : 'La imagen no es un formato valido'});

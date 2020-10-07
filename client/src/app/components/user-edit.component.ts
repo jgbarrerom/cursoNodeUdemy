@@ -39,6 +39,7 @@ export class UserEditComponent implements OnInit{
     public onSubmit() {
         this._userServices.updateUser(this.user).subscribe(
             response=>{
+                debugger
                 if(!response.user){
                     this.alertMessaage = 'Ocurrio un error en la actualizacion de los datos'
                 }else{

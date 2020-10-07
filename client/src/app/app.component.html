@@ -1,33 +1,38 @@
 <div *ngIf="identity">
-  <h1>{{ title }}</h1>
+  <h1>
+    <a [routerLink]="['/']">
+      <span class="oi oi-musical-note"></span>
+      {{ title }}
+    </a>
+  </h1>
   <ul id="navigation" class="nav nav-pills nav-fill">
     <li class="nav-item">
       <a class="nav-link" href="#">
-        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        <span class="oi oi-dial"></span>
         Buscar
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">
-        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        <span class="oi oi-person"></span>
         Artista
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">
-        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        <span class="oi oi-box"></span>
         Album
       </a>
     </li>
   </ul>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="user-logged">
-    <span id="identityName">{{identity.name}}</span>
+  <nav class="navbar nav justify-content-end navbar-light bg-light" id="user-logged">
+    <span class="navbar-brand" id="identityName">{{identity.name}}</span>
     <span class="btn btn-warning" (click)="logout()">
+      <span class="oi oi-account-logout"></span>
       Cerrar Sesión
     </span>
     <a [routerLink]="['/mis-datos']">
-      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-      Mis Datos
+      <span class="oi oi-cog"></span>
     </a>
   </nav>
   <p>Estas logeado en la aplicación</p>

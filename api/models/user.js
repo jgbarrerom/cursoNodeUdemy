@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
+mongoose.set('useFindAndModify', false);
 //se define el modelo del documento con JSON
 var UserSchema = schema({
     name: String,

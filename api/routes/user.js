@@ -3,10 +3,10 @@
 var express = require('express');
 var UserController = require('../controllers/user');
 var md_auth = require('../middleware/authenticated');
+var multipart = require('connect-multiparty');//subida de ficheros
 
 var api = express.Router();
 
-var multipart = require('connect-multiparty');//subida de ficheros
 var md_upload = multipart({uploadDir : './uploads/users'});
 
 api.get('/probando-controlador', UserController.pruebas);
