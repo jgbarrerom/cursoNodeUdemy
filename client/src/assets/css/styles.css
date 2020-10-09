@@ -1,3 +1,25 @@
 body{
     background-color: #cccccc;
 }
+
+.navbar a{
+    color: #dddddd;
+    text-decoration: none;
+    display: block;
+}
+
+.navbar a:hover{
+    color: white;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #1d1d1d;
+  }
+  
+  .dropdown-item.active, .dropdown-item:active {
+    color: #cccccc;
+    text-decoration: none;
+    background-color: #007bff;
+  }
