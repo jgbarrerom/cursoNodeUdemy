@@ -11,20 +11,20 @@
     <div class="collapse navbar-collapse " id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="#">
+          <a class="nav-link" [routerLinkActive]="['active']" href="#">
             <span class="oi oi-dial"></span>
             Buscar
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/artist',1]">
             <span class="oi oi-person"></span>
             Artista
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" [routerLinkActive]="['active']" href="#">
             <span class="oi oi-box"></span>
             Album
           </a>

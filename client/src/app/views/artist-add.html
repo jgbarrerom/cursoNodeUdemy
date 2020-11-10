@@ -1,0 +1,29 @@
+<h1>{{titulo}}</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <form (nSubmit)="onSubmit()" #formArtist="ngForm">
+                <div class="form-group row">
+                    <label for="nombreArtist" class="col-sm-3 col-form-label">Nombre del Artista: </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" #name="ngModel" name="nombreArtist" [(ngModel)]="artist.name" id="nombreArtist" required>
+                        <div [hidden]="name.valid" class="alert alert-danger" role="alert">
+                            El nombre es obligatorio
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="descArtist" class="col-sm-3 col-form-label">Descripcion del Artista: </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" #name="ngModel" name="descArtist" [(ngModel)]="artist.description" 
+                        id="descArtist" required>
+                        <div [hidden]="descArtist.valid" class="alert alert-danger" role="alert">
+                            La descripcion es obligatoria
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-lg btn-primary " value="Agregar Artista" [disabled]="!formArtist.form.valid">
+            </form>
+        </div>
+    </div>
+</div>
