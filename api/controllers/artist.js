@@ -53,7 +53,8 @@ function getArtist(req, res) {
 function saveArtist(req,res){
     var artist = new Artist();
     var params = req.body;
-    artist.name = params.name;
+    console.log(params);
+    artist.name = params.nombre;
     artist.description = params.description;
     artist.image = 'null';//params.image;
     artist.save((err, artistStore) => {
