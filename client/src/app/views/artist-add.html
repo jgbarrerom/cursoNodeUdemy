@@ -1,14 +1,19 @@
 <h1>{{titulo}}</h1>
 <div class="container">
+    <div *ngIf="alertMessaage">
+        <div class="alert alert-primary" role="alert">
+          {{alertMessaage}}
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-9">
             <form (ngSubmit)="onSubmit()" #formArtist="ngForm">
                 <div class="form-group row">
                     <label for="nombreArtist" class="col-sm-3 col-form-label">Nombre del Artista: </label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" #nombreArtist="ngModel" 
-                        name="nombreArtist" [(ngModel)]="artist.nombre" id="nombreArtist" required>
-                        <div [hidden]="!nombreArtist.touched || nombreArtist.valid" 
+                        <input type="text" class="form-control" #nombreArtist="ngModel"
+                        name="nombreArtist" [(ngModel)]="artist.name" id="nombreArtist" required>
+                        <div [hidden]="!nombreArtist.touched || nombreArtist.valid"
                         class="alert alert-danger" role="alert">
                             El nombre es obligatorio
                         </div>
@@ -17,11 +22,23 @@
                 <div class="form-group row">
                     <label for="descArtist" class="col-sm-3 col-form-label">Descripcion del Artista: </label>
                     <div class="col-sm-6">
-                        <textarea type="text" class="form-control" #descArtist="ngModel" name="descArtist" 
-                        [(ngModel)]="artist.description" 
+                        <textarea type="text" class="form-control" #descArtist="ngModel" name="descArtist"
+                        [(ngModel)]="artist.description"
                         id="descArtist" required></textarea>
                         <div [hidden]="!descArtist.touched || descArtist.valid" class="alert alert-danger" role="alert">
                             La descripcion es obligatoria
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                      <div>
+                        <p>La variable es nula {{artist.image}}</p>
+                      </div>
+                        <input type="file" placeholder="Subir Imagen.." (change)="fileChangeEvent($event)">
+                        <div *ngIf="!artist.image">
+                          <img class="img-thumbnail" src="{{url + 'artist/get-image-artist/' + artist.image}}"
+                          alt="Imagen de artista no disponible">
                         </div>
                     </div>
                 </div>

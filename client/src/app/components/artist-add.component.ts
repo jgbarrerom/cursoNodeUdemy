@@ -19,6 +19,8 @@ export class ArtistAddComponent implements OnInit{
     public identity;
     public token;
     public url : string;
+    public alertMessaage : string;
+    public myVar = "";
 
 
     constructor(
@@ -40,6 +42,20 @@ export class ArtistAddComponent implements OnInit{
     }
 
     public onSubmit(){
-        this._artistService.addArtist(this.artist,this.token).subscribe();
+        this._artistService.addArtist(this.artist,this.token).subscribe(
+            response => {
+                if(!response.artist){
+                    this.alertMessaage = 'Ocurrio un error al crear al artista';
+                }else{
+                    this.alertMessaage = 'Se creo el artista correctamente';
+                    debugger
+                    this.artist = response.artist;
+                    this._router.navigate(['/edit-artist',response.artist._id]);
+                }
+            },
+            error => {
+                this.alertMessaage = error.message;
+            }
+        );
     }
 }

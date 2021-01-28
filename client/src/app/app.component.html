@@ -37,7 +37,8 @@
             {{identity.name}}
           </a>
           <div class="dropdown-menu bg-dark" aria-label="navbarDropdown">
-            <a href="#" class="dropdown-item" (click)="logout()"><span class="oi oi-account-logout"></span>
+            <a href="/" class="dropdown-item" (click)="logout()">
+              <span class="oi oi-account-logout"></span>
               Cerrar Sesión
             </a>
             <a [routerLink]="['/mis-datos']" class="dropdown-item">

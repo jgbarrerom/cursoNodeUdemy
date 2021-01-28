@@ -16,7 +16,7 @@ function buscarUnArtista(req, res){
             if(!artistStore){
                 res.status(404).send({message: 'Artista no existe'});
             }else{
-                res.status(200).send({message: artistStore});
+                res.status(200).send({artist: artistStore});
             }
         }
     });
@@ -53,10 +53,14 @@ function getArtist(req, res) {
 function saveArtist(req,res){
     var artist = new Artist();
     var params = req.body;
-    console.log(params);
-    artist.name = params.nombre;
+    if(params.name === undefined || params.description=== undefined){
+        res.status(403).send({message: 'Los datos del artista son obligatorios'});
+    }else{
+
+    artist.name = params.name;
     artist.description = params.description;
     artist.image = 'null';//params.image;
+    
     artist.save((err, artistStore) => {
         if(err){
             res.status(500).send({message: 'Error al almacenar un artista'});
@@ -68,6 +72,7 @@ function saveArtist(req,res){
             }
         }
     });
+    }
 }
 
 function updateArtist(req, res) {
@@ -155,11 +160,14 @@ function uploadImages(req,res){
 function getImageFile(req, res){
     var imageFile = req.params.imageFile;
     var pathFile = './uploads/artists/' + imageFile;
-    fs.exists(pathFile, function(exists){
-        if(exists){
-            res.sendFile(path.resolve(pathFile));
-        }else{
+    console.log(pathFile);
+    fs.stat(pathFile, function(err, stats){
+        if(err){
+            console.log(err);
             res.status(404).send({message: 'No existe la imagen...'});
+        }else{
+            console.log(stats);
+            res.sendFile(path.resolve(pathFile));
         }
     });
 }

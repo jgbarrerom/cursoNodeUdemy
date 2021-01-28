@@ -1,0 +1,52 @@
+@apiMusify=http://localhost:3977/api/
+
+GET {{apiMusify}}probando-controlador
+
+### obtener lista de artistas
+GET {{apiMusify}}artists/1  
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjQwNWY0ZjZiMDdiMzBkMzg1OTBjOGQiLCJuYW1lIjoiamVpc3NvbiIsInN1cm5hbWUiOiJiYXJyZXJvIiwiZW1haWwiOiJhZG1pbkB1bm8uY29tIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpbWFnZSI6IjVoY1FHRTR5MUZHRGNSajA2X3RRZHJNSy5qcGciLCJpYXQiOjE2MDQ5ODAxMDIsImV4cCI6MTYwNzU3MjEwMn0.7nfdlpLk7lGd6ikW2-cpEkDQ1OhJA7pQsKvtG40PwJQ
+
+
+### obtener un artista
+GET {{apiMusify}}artist/5fab588889985510bc6b15de
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjQwNWY0ZjZiMDdiMzBkMzg1OTBjOGQiLCJuYW1lIjoiamVpc3NvbiIsInN1cm5hbWUiOiJiYXJyZXJvIiwiZW1haWwiOiJhZG1pbkB1bm8uY29tIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpbWFnZSI6IjVoY1FHRTR5MUZHRGNSajA2X3RRZHJNSy5qcGciLCJpYXQiOjE2MDQ5ODAxMDIsImV4cCI6MTYwNzU3MjEwMn0.7nfdlpLk7lGd6ikW2-cpEkDQ1OhJA7pQsKvtG40PwJQ
+
+
+###crear un artista
+POST {{apiMusify}}/album
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjQwNWY0ZjZiMDdiMzBkMzg1OTBjOGQiLCJuYW1lIjoiamVpc3NvbiIsInN1cm5hbWUiOiJiYXJyZXJvIiwiZW1haWwiOiJhZG1pbkB1bm8uY29tIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpbWFnZSI6IjVoY1FHRTR5MUZHRGNSajA2X3RRZHJNSy5qcGciLCJpYXQiOjE2MDQ5ODAxMDIsImV4cCI6MTYwNzU3MjEwMn0.7nfdlpLk7lGd6ikW2-cpEkDQ1OhJA7pQsKvtG40PwJQ
+
+{
+    "title":"Endless Pain",
+    "description":"(Dolor Interminable) es el álbum debut de la banda alemana de thrash metal Kreator. Fue lanzado en octubre de 1985 por Noise Records.",
+    "year": "2010",
+    "artist": "5fab588889985510bc6b15de"
+}
+
+
+###Consultar un artista
+GET {{apiMusify}}/album/5fc6c39c7b2d700f80ae8fe9
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjQwNWY0ZjZiMDdiMzBkMzg1OTBjOGQiLCJuYW1lIjoiamVpc3NvbiIsInN1cm5hbWUiOiJiYXJyZXJvIiwiZW1haWwiOiJhZG1pbkB1bm8uY29tIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpbWFnZSI6IjVoY1FHRTR5MUZHRGNSajA2X3RRZHJNSy5qcGciLCJpYXQiOjE2MDQ5ODAxMDIsImV4cCI6MTYwNzU3MjEwMn0.7nfdlpLk7lGd6ikW2-cpEkDQ1OhJA7pQsKvtG40PwJQ
+
+
+
+###Crear cancion 
+POST {{apiMusify}}/song
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjQwNWY0ZjZiMDdiMzBkMzg1OTBjOGQiLCJuYW1lIjoiamVpc3NvbiIsInN1cm5hbWUiOiJiYXJyZXJvIiwiZW1haWwiOiJhZG1pbkB1bm8uY29tIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpbWFnZSI6IjVoY1FHRTR5MUZHRGNSajA2X3RRZHJNSy5qcGciLCJpYXQiOjE2MDQ5ODAxMDIsImV4cCI6MTYwNzU3MjEwMn0.7nfdlpLk7lGd6ikW2-cpEkDQ1OhJA7pQsKvtG40PwJQ
+
+{
+    "order":"1",
+    "name":"Endless Pain",
+    "duration": "3:32",
+    "album": "5fc6c39c7b2d700f80ae8fe9"
+}
+
+###Obtener cancion
+GET {{apiMusify}}/song/5fc6c8cc7b2d700f80ae8fea
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjQwNWY0ZjZiMDdiMzBkMzg1OTBjOGQiLCJuYW1lIjoiamVpc3NvbiIsInN1cm5hbWUiOiJiYXJyZXJvIiwiZW1haWwiOiJhZG1pbkB1bm8uY29tIiwicm9sZSI6IlJPTEVfQURNSU4iLCJpbWFnZSI6IjVoY1FHRTR5MUZHRGNSajA2X3RRZHJNSy5qcGciLCJpYXQiOjE2MDQ5ODAxMDIsImV4cCI6MTYwNzU3MjEwMn0.7nfdlpLk7lGd6ikW2-cpEkDQ1OhJA7pQsKvtG40PwJQ
