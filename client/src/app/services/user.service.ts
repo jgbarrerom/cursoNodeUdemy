@@ -10,7 +10,7 @@ export class UserService{
     private identity;
     private token;
     public url: string;
-    
+
     constructor(private _http : HttpClient){
         this.url = GLOBAL.url;
     }
@@ -26,7 +26,7 @@ export class UserService{
         return this._http.post(this.url+'login', body, {headers : headers});
     }
 
-    register(user_to_register : User): Observable<any>{ 
+    register(user_to_register : User): Observable<any>{
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         const body = JSON.stringify(user_to_register);
         return this._http.post(this.url+'register',body,{headers: headers});

@@ -1,6 +1,6 @@
 # Curso Mean Udemy
 
-_Desarrollo de taller visto en UDEMY para aprender a usar NodeJS, Angular, Mongo y NPM
+_Desarrollo de taller visto en Udemy para aprender a usar NodeJS, Angular, Mongo y NPM.
 Proyecto para estudiar NodeJS, MongoDB, uso de NPM y AngularJS_
 
 ## Comenzando 🚀
@@ -24,18 +24,20 @@ Da un ejemplo
 
 ### Instalación 🔧
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
+_Para instalar la aplicacion es necesario ejecutar el backEnd de NodeJs_
 
 _Dí cómo será ese paso_
 
 ```
-Da un ejemplo
+cd ./api
+npm start
 ```
 
-_Y repite_
+_Para iniciar el front es necesario tener Angular Cli_
 
 ```
-hasta finalizar
+cd ./client
+npm start
 ```
 
 _Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
@@ -88,10 +90,9 @@ Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones
 
 _Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
 
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
+* **Victor Robles** - *Tutor* - [@victorobs](https://victorroblesweb.es/)
 
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
+También puedes mirar la lista de todos los [contribuyentes](https://github.com/jgbarrerom) quíenes han participado en este proyecto. 
 
 ## Licencia 📄
 
@@ -107,4 +108,5 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 
 
 ---
+_Plantilla README.md tomada por_
 ⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊

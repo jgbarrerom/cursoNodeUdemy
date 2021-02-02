@@ -6,6 +6,7 @@ import { UserService } from '../services/user.service';
 import { ArtistService } from '../services/artist.service';
 import { UploadFileService } from '../services/uploadFiles.services';
 import { Artist } from '../models/artist';
+import { isNull } from 'util';
 
 @Component({
     selector:'artist-edit',
@@ -22,7 +23,7 @@ export class ArtistEditComponent implements OnInit{
     public url : string;
     public alertMessaage : string;
     public filesToUpload : Array<File>;
-    public myVar = "";
+    public btnText = 'Actualizar Artista';
 
     constructor(
         private _route: ActivatedRoute,
@@ -53,7 +54,6 @@ export class ArtistEditComponent implements OnInit{
                         this._router.navigate(['/']);
                     }else{
                         this.artist = response.artist;
-                        console.log('La respuesta es : ' + this.artist.image);
                     }
                 },
                 error => {

@@ -20,7 +20,7 @@ export class ArtistAddComponent implements OnInit{
     public token;
     public url : string;
     public alertMessaage : string;
-    public myVar = "";
+    public btnText = 'Agregar Artista';
 
 
     constructor(
