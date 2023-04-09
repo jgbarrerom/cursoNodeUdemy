@@ -6,7 +6,6 @@ import { UserService } from '../services/user.service';
 import { ArtistService } from '../services/artist.service';
 import { UploadFileService } from '../services/uploadFiles.services';
 import { Artist } from '../models/artist';
-import { isNull } from 'util';
 
 @Component({
     selector:'artist-edit',

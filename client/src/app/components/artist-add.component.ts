@@ -58,4 +58,9 @@ export class ArtistAddComponent implements OnInit{
             }
         );
     }
+
+
+    public fileChangeEvent(fileInput: any){
+      let filesToUpload = <Array<File>>fileInput.target.files;
+  }
 }

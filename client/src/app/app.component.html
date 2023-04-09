@@ -33,7 +33,7 @@
           <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             <img src="{{url + 'get-image-user/' + identity.image}}" class="rounded" style="width: 150px; height: 150px;"
-          alt="No cuenta con una imagen" style="height: 30px; width: 25px;">
+              alt="No cuenta con una imagen" style="height: 30px; width: 25px;">
             {{identity.name}}
           </a>
           <div class="dropdown-menu bg-dark" aria-label="navbarDropdown">
@@ -53,61 +53,38 @@
   <p>Estas logeado en la aplicación</p>
   <router-outlet></router-outlet>
 </div>
-<div *ngIf="!identity" class="text-center">
-  <div class="row">
-    <div class="col-sm">
-      <h1>Identificate</h1>
-      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="form-sigin">
-        <p>
-          <input placeholder="Correo Electrónico" type="email" #email="ngModel" name="email" [(ngModel)]="user.email"
-            class="form-control" required />
-          <span *ngIf="!email.valid && email.touched">El email es obligatorio</span>
-        </p>
-        <p>
-          <input placeholder="Contraseña" name="password" #password="ngModel" [(ngModel)]="user.password"
-            type="password" class="form-control" required />
-        </p>
-        <div *ngIf="errorMenssage">
-          <div class="alert alert-danger" role="alert">
-            <strong>Error:</strong> {{errorMenssage}}
+<div style="height: 100vh;background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));" *ngIf="!identity">
+  <section class="gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <div class="mb-md-3 mt-md-4 pb-2">
+                <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                  <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                  <p class="text-white-50 mb-3">Please enter your email and password!</p>
+                  <div class="form-outline form-white mb-4">
+                    <input type="email" #email="ngModel" name="email" [(ngModel)]="user.email"
+                      class="form-control form-control-lg" required />
+                    <label class="form-label" for="email">Email</label>
+                  </div>
+                  <div class="form-outline form-white mb-4">
+                    <input name="password" id="password" #password="ngModel" [(ngModel)]="user.password" type="password" class="form-control form-control-lg" required />
+                    <label class="form-label" for="password">Password</label>
+                  </div>
+                  <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+                  <input type="submit" value="Login" class="btn btn-outline-light btn-lg px-5" />
+                </form>
+              </div>
+              <div>
+                <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-        <p>
-          <input type="submit" value="Entrar" class="btn btn-lg btn-primary btn-block" />
-        </p>
-      </form>
-    </div>
-
-    <div class="col-sm">
-      <h1>Registrate</h1>
-      <div *ngIf="alertRegister">
-        <div class="alert alert-primary" role="alert">
-          {{alertRegister}}
-        </div>
       </div>
-      <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="form-sigin">
-        <p>
-          <input placeholder="Nombre" type="text" class="form-control" #nameReg="ngModel" name="name"
-            [(ngModel)]="userRegiser.name" required />
-        </p>
-        <p>
-          <input placeholder="Apellido" type="text" class="form-control" required #surnameReg="ngModel" name="surname"
-            [(ngModel)]="userRegiser.surname" />
-        </p>
-        <p>
-          <input placeholder="Correo Electronico" type="text" class="form-control" required #emailReg="ngModel"
-            name="email" [(ngModel)]="userRegiser.email" />
-        </p>
-        <p>
-          <input placeholder="Contraseña" type="password" class="form-control" required #passwordReg="ngModel"
-            name="password" [(ngModel)]="userRegiser.password" />
-        </p>
-        <p>
-          <input type="submit" value="Registrar" class="btn btn-lg btn-primary btn-block" />
-        </p>
-      </form>
     </div>
-  </div>
-
-
+  </section>
 </div>
