@@ -35,7 +35,7 @@ export class ArtistEditComponent implements OnInit{
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
-        this.artist = new Artist('','','');
+        this.artist = new Artist('','','','');
 
     }
 
@@ -64,27 +64,24 @@ export class ArtistEditComponent implements OnInit{
     public onSubmit(){
         this._route.params.forEach((params: Params) => {
             let id = params['id'];
-            this._artistService.updateArtist(this.artist,this.token, id).subscribe(
-                response => {
-                    if(!response.artist){
-                        this.alertMessaage = 'Ocurrio un error al actualizar al artista';
-                    }else{
-                        this.alertMessaage = 'Se actualizó el artista correctamente';
-                        this._uploadFileService.makeFileReq(this.url + 'artist/upload-image-artist/' + id,[],this.filesToUpload,this.token,'image')
-                        .then(
-                            result => {
-                                this._router.navigate(['/artist',1]);
-                            },
-                            error => {
-                                this.alertMessaage = error;
-                            }
-                        );
-                    }
-                },
-                error => {
-                    this.alertMessaage = error.message;
+            this._artistService.updateArtist(this.artist, this.token, id).subscribe({
+              next:(v) => {
+                if(v.artist){
+                  this.alertMessaage = 'Se actualizó el artista correctamente';
+                  console.log(this.filesToUpload);
+                  if(this.filesToUpload){
+                    this._uploadFileService.makeFileReq(this.url + 'artist/upload-image-artist/' + id,this.filesToUpload,this.token,'image').then(
+                      (result : any) => {
+                        this.artist.image = result.image;
+                        this._router.navigate(['/artist',1]);
+                      }
+                    );
+                  }
                 }
-            );
+              },
+              error: (e) => console.error(e),
+              complete: () => console.info('complete')
+            });
         });
     }
 

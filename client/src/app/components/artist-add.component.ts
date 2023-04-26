@@ -20,6 +20,7 @@ export class ArtistAddComponent implements OnInit{
     public token;
     public url : string;
     public alertMessaage : string;
+    public filesToUpload : Array<File>;
     public btnText = 'Agregar Artista';
 
 
@@ -33,7 +34,7 @@ export class ArtistAddComponent implements OnInit{
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
-        this.artist = new Artist('','','');
+        this.artist = new Artist('','','','');
 
     }
 
@@ -42,25 +43,23 @@ export class ArtistAddComponent implements OnInit{
     }
 
     public onSubmit(){
-        this._artistService.addArtist(this.artist,this.token).subscribe(
-            response => {
-                if(!response.artist){
-                    this.alertMessaage = 'Ocurrio un error al crear al artista';
-                }else{
-                    this.alertMessaage = 'Se creo el artista correctamente';
-                    debugger
-                    this.artist = response.artist;
-                    this._router.navigate(['/edit-artist',response.artist._id]);
-                }
-            },
-            error => {
-                this.alertMessaage = error.message;
-            }
-        );
+      this._artistService.addArtist(this.artist, this.token).subscribe({
+        next: (response) => {
+          if(!response.artist){
+            this.alertMessaage = 'Ocurrio un error al crear al artista';
+        }else{
+            this.alertMessaage = 'Se creo el artista correctamente';
+            this.artist = response.artist;
+
+            this._router.navigate(['/edit-artist',this.artist._id]);
+        }
+        },
+        error: (e) => this.alertMessaage = e
+      });
     }
 
 
     public fileChangeEvent(fileInput: any){
-      let filesToUpload = <Array<File>>fileInput.target.files;
+      this.filesToUpload = <Array<File>>fileInput.target.files;
   }
 }

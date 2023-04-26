@@ -49,6 +49,7 @@ export class AppComponent implements OnInit{
         }else{
           //se crea sesion en el localstorage para tener al usuario en sesion
           //conseguir token para enviarlo en cada peticion
+          this.identity.password = '';
           localStorage.setItem('identity',JSON.stringify(this.identity));
           this._userServices.signup(this.user,'token').subscribe(
             response => {

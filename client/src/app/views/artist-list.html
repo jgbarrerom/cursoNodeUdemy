@@ -3,4 +3,26 @@
     <a [routerLink]="['/artist-add']" class="btn btn-primary" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
         Añadir artista
     </a>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Cover</th>
+          <th scope="col" *ngIf="identity && identity.role=='ROLE_ADMIN'"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let artist of artists; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{ artist.name }}</td>
+          <td>{{ artist.description }}</td>
+          <td><img class="img-thumbnail small-thumbnail" src="{{url + 'artist/get-image-artist/' + artist.image}}" alt="Image not aviable"></td>
+          <td  *ngIf="identity && identity.role=='ROLE_ADMIN'">
+            <a [routerLink]="['/edit-artist', artist._id]">Modificar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 </div>

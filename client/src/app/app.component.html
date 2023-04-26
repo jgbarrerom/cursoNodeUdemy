@@ -50,10 +50,12 @@
       </ul>
     </div>
   </nav>
-  <p>Estas logeado en la aplicación</p>
-  <router-outlet></router-outlet>
+  <div class="container-fluid jumbotron">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<div style="height: 100vh;background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));" *ngIf="!identity">
+<div style="height: 100vh;background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));"
+  *ngIf="!identity">
   <section class="gradient-custom">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -70,7 +72,8 @@
                     <label class="form-label" for="email">Email</label>
                   </div>
                   <div class="form-outline form-white mb-4">
-                    <input name="password" id="password" #password="ngModel" [(ngModel)]="user.password" type="password" class="form-control form-control-lg" required />
+                    <input name="password" id="password" #password="ngModel" [(ngModel)]="user.password" type="password"
+                      class="form-control form-control-lg" required />
                     <label class="form-label" for="password">Password</label>
                   </div>
                   <p class="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>

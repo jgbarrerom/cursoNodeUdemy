@@ -4,17 +4,18 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import { GLOBAL } from '../services/global';
 import { UserService } from '../services/user.service';
 import { Artist } from '../models/artist';
+import { ArtistService } from '../services/artist.service';
 
 @Component({
     selector:'artist-list',
     templateUrl: '../views/artist-list.html',
-    providers: [UserService]
+    providers: [UserService, ArtistService]
 })
 
 export class ArtistListComponent implements OnInit{
 
     public titulo : string;
-    public artist : Artist[];
+    public artists : Artist[];
     public identity;
     public token;
     public url : string;
@@ -23,7 +24,8 @@ export class ArtistListComponent implements OnInit{
     constructor(
         private _route: ActivatedRoute,
         private _router : Router,
-        private _userService : UserService
+        private _userService : UserService,
+        private _artistService : ArtistService
     ){
         this.titulo ='Artista';
         this.identity = this._userService.getIdentity();
@@ -33,6 +35,11 @@ export class ArtistListComponent implements OnInit{
     }
 
     ngOnInit(){
-        console.log('artista-list.component.ts cargado');
+        this._artistService.getArtists(this.token,'1').subscribe({
+          next: (resp) => {
+            //console.log(resp.artist);
+            this.artists = resp.artist;
+          }
+        });
     }
 }
